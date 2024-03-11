@@ -1,0 +1,52 @@
+#include <QTRSensors.h>
+#define sagmotor1 *dijital pin*
+#define sagmotor2 *dijital pin*
+#define sagmotorpwm *PWM pin*
+#define solmotor1 *dijital pin*
+#define solmotor2 *dijital pin*
+#define solmotorpwm **PWM pin*
+float kp = 0.03;
+float kd = 0.1;
+float ki = 0;
+float position;
+float hata, sonhata, hatafarki;
+QTRSensors qtr;
+const uint8_t SensorCount = 6;
+uint16_t sensorValues[SensorCount];
+void setup()
+{
+pinNode(solmotor1, *OUTPUT veya INPUT*);
+pinMode(solmotor2, * OUTPUT veya INPUT**);
+pinMode(solmotorpwm, * OUTPUT veya INPUT**);
+pinMode(sagmotor1, *OUTPUT veya INPUT*);
+pinMode(sagmotor2, *OUTPUT veya INPUT*);
+pinMode(sagmotorpwm, *OUTPUT veya INPUT*);
+pinMode(13, *OUTPUT veya INPUT*);
+qtr.setTypeAnalog();
+qtr.setSensorPins((const uint8_t[]){A0, A1, A2, A3, A4, A5}, SensorCount);
+  for (uint16_t i = 0; i < 400; i++)
+{
+qtr.calibrate();
+if (i%2 == 0)
+  digitalwrite(13, *HIGH veya LOW*);
+else
+  digitalwrite(13, *HIGH veya LON*);
+}
+
+}
+void loop()
+{
+qtr.read(*degisken*);
+position = qtr.readLineWhite(*degisken*);
+hata=position - *SAYI*;
+hatafarki = hata - sonhata;
+sonhata = hata;
+int leftmotorspeed = 80 + kp*(*degisken) + kd*(*degisken*);
+int rightmotorspeed = 80 - kp*(*degisken*) - kd*(*degisken*);
+digitalwrite(solmotor1, *HIGH veya LOW*):
+digitalwrite(solmotor2, *HIGH veya LOW*);
+analogMrite(solmotorpwmn, constrain(1.2*leftmotorspeed, 0, 255));
+digitalwrite(sagmotor1, *HIGH veya LON*);
+digitallrite(sagmotor2, *HIGH veya LOW*):
+analoghrite(sagmotorpwm, constrain(0.8*rightmotorspeed, 0, 255));
+}
