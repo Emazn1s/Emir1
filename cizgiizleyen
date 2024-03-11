@@ -23,7 +23,7 @@ pinMode(sagmotor2, *OUTPUT veya INPUT*);
 pinMode(sagmotorpwm, *OUTPUT veya INPUT*);
 pinMode(13, *OUTPUT veya INPUT*);
 qtr.setTypeAnalog();
-qtr.setSensorPins((const uint8_t[]){A0, A1, A2, A3, A4, A5}, SensorCount);
+qtr.setSensorPins((const uint8_t[]){A0, A1, A2, A3, A4, A5, A6, A7}, SensorCount);
   for (uint16_t i = 0; i < 400; i++)
 {
 qtr.calibrate();
